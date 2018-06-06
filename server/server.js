@@ -65,4 +65,17 @@ app.get('/insert',function(req,res){
    });
   }); 
 
+  app.get('/delete',function(req,res){
+    articles.find({ author:'shivam' }).remove().exec();
+   res.send("<H1>1 records Deleted </H1>");
+  });
+
+  app.put('/update:id',function(req,res){
+    Contact.update({_id: id},{$set: { author: "Adams"}}, contact, {upsert: true}, 
+      function(err){} )
+    res.send("<H1>1 record updated </H1>");
+    });
  
+  
+
+  //Contact.update({phone:request.phone}, {$set: { phone: request.phone }}, {upsert: true}, function(err){...})
