@@ -1,10 +1,13 @@
 const dbManager=require('./dbManager');
 
 const Promise = require('bluebird');
+
+//Load View Engine 
+var path=__dirname +"/index.pug";
+
 // custom logger
 const log = require('./logger.js');
 const express = require('express');
-
 const app = express();
 
 // serves all static files in /public
@@ -12,12 +15,11 @@ app.use(express.static(`${__dirname}/../public`));
 const port = process.env.PORT || 8002;
 const server = require('http').Server(app);
 
-// boilerplate version
-const version = `Express-Boilerplate v${require('../package.json').version}`;
+
 
 // start server
 server.listen(port, () => {
-  log.info(version);
+ 
   log.info(`Listening on port ${port}`);
 });
 
@@ -46,6 +48,7 @@ app.post('/api/users', jsonParser, (req, res) => {
 });
 console.log("level 1");
 dbManager();
+
 
 
 

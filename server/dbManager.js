@@ -1,59 +1,49 @@
 /* dbManager - wrapper over node-mongodb driver */
-
+const express = require('express');
+const app = express();
 const logger=require('./logger');
+const mongoose=require("mongoose");
+//const Articles= require('../models/product');
+//var path='../index.pug';
 
 var dbManager = () => {
   const log = logger;
+  console.log("inside dbmanger");
+ 
+  mongoose.connect('mongodb://localhost:27017/beginnerbook');
+let db=mongoose.connection;
+    console.log(1);
+//check connection
+db.once('open',function(){
 
-  console.log("inside dbmanager function");
-  // Connection
-  const pe = process.env;
-  // use a cloud-hosted mongo db, such as mlab.com
-  //const url = `mongodb://${pe.user}:${pe.password}@${pe.db_host}:${pe.db_port}/${pe.db_name}`;
- const url= 'mongodb://localhost:27017/beginnerbook';
+        console.log("connected to mongoDB");    
+})
 
-  let db = null;
-  let collection = null;
-  const adminDb = null;
+console.log(2);
+//check for DB errors
+db.on('error',function(err){
+    console.log("Error found");
+});
 
-  // connect to db
-  const connect = () =>
-    require('mongodb').MongoClient.connect(url, {
-      poolSize: 20,
-    }) // default poolsize = 5
-      .then((dbInst) => {
-        log.info(`Connected to mongodb at ${url}`);
-        // get db, collection
-        db = dbInst;
-        // get existing collection, or create if doesn't exist
-      
-        collection = db.collection('beginnerbook');
-      }).catch(err => log.error(err));
+//Init App
+const app=express();
 
-  // Mongo's UPSERT operation
-  const upsert = doc =>
-    // Update the document using an UPSERT operation, ensuring creation if it does not exist
-    // does not change "_id" value
-    collection.updateOne(
-      { 
+//Bring in Models
+let Articles= require('../models/article');
 
-      },
-      doc, // use {$set: ...} to set just one field
-      {
-        upsert: true,
-      },
-    )
-      .then(res => log.debug(`Inserted ${doc.title}`, res));
+    Articles.find({}, function(err, results){
+        if(err)
+        {
+            console.log(err);
+        }
+        else{
+            console.log(results);
+            
+        } 
+    })
 
+ 
 
-  const close = () => db.close()
-    .then(() => log.info('DB closed successfully.'));
-
-  return {
-    close,
-    connect,
-    upsert,
-  };
 };
 
 module.exports = dbManager;
