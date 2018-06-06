@@ -1,5 +1,5 @@
-const result=require('./dbManager');
-const logger=require('./logger.js');
+const dbManager=require('./dbManager');
+
 const Promise = require('bluebird');
 // custom logger
 const log = require('./logger.js');
@@ -45,7 +45,7 @@ app.post('/api/users', jsonParser, (req, res) => {
   // create user in req.body
 });
 console.log("level 1");
-result.dbManager(logger);
+dbManager();
 
 
 

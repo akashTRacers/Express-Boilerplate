@@ -1,8 +1,8 @@
 /* dbManager - wrapper over node-mongodb driver */
 
-'use strict';
+const logger=require('./logger');
 
-const dbManager = (logger) => {
+var dbManager = () => {
   const log = logger;
 
   console.log("inside dbmanager function");
