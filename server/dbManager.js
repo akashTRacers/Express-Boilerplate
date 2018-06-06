@@ -8,7 +8,8 @@ const dbManager = (logger) => {
   // Connection
   const pe = process.env;
   // use a cloud-hosted mongo db, such as mlab.com
-  const url = `mongodb://${pe.user}:${pe.password}@${pe.db_host}:${pe.db_port}/${pe.db_name}`;
+  //const url = `mongodb://${pe.user}:${pe.password}@${pe.db_host}:${pe.db_port}/${pe.db_name}`;
+ const url= 'mongodb://localhost:27017/beginnerbook';
 
   let db = null;
   let collection = null;
@@ -25,7 +26,7 @@ const dbManager = (logger) => {
         db = dbInst;
         // get existing collection, or create if doesn't exist
         // NOTE: Collections are not created until the first document is inserted
-        collection = db.collection('khan-info');
+        collection = db.collection('beginnerbook');
       }).catch(err => log.error(err));
 
   // Mongo's UPSERT operation
@@ -33,7 +34,8 @@ const dbManager = (logger) => {
     // Update the document using an UPSERT operation, ensuring creation if it does not exist
     // does not change "_id" value
     collection.updateOne(
-      { // criteria
+      { 
+
       },
       doc, // use {$set: ...} to set just one field
       {
@@ -41,7 +43,7 @@ const dbManager = (logger) => {
       },
     )
       .then(res => log.debug(`Inserted ${doc.title}`, res));
-
+        
 
   const close = () => db.close()
     .then(() => log.info('DB closed successfully.'));
