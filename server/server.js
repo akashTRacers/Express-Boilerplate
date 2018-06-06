@@ -2,11 +2,9 @@ const dbManager=require('./dbManager');
 
 const Promise = require('bluebird');
 
-//Load View Engine 
-var path=__dirname +"/index.pug";
+var path='../index.pug';
 
 // custom logger
-const log = require('./logger.js');
 const express = require('express');
 const app = express();
 
@@ -15,12 +13,12 @@ app.use(express.static(`${__dirname}/../public`));
 const port = process.env.PORT || 8002;
 const server = require('http').Server(app);
 
+app.set("view engine", "pug");
 
 
 // start server
 server.listen(port, () => {
- 
-  log.info(`Listening on port ${port}`);
+  console.log(`listening to port ${port}`);
 });
 
 // 'body-parser' middleware for POST
@@ -34,19 +32,26 @@ const urlencodedParser = bodyParser.urlencoded({
   extended: false,
 });
 
-// POST /login gets urlencoded bodies
-app.post('/login', urlencodedParser, (req, res) => {
-  if (!req.body) return res.sendStatus(400);
-  res.send(`welcome, ${req.body.username}`);
-});
+let Articles= require('../models/article');
 
-// POST /api/users gets JSON bodies
+app.get('/home1',function(req,res){
 
-app.post('/api/users', jsonParser, (req, res) => {
-  if (!req.body) return res.sendStatus(400);
-  // create user in req.body
-});
-console.log("level 1");
+    Articles.find({}, function(err, results){
+        if(err)
+        {
+            console.log(err);
+        }
+        else{
+            console.log(results);
+            res.render(path,{
+              title:'Articles',
+              articles1:results
+      
+          });
+        } 
+    })
+
+  });
 dbManager();
 
 
