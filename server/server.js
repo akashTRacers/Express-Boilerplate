@@ -1,5 +1,5 @@
-'use strict';
-
+const result=require('./dbManager');
+const logger=require('./logger.js');
 const Promise = require('bluebird');
 // custom logger
 const log = require('./logger.js');
@@ -23,8 +23,10 @@ server.listen(port, () => {
 
 // 'body-parser' middleware for POST
 const bodyParser = require('body-parser');
+
 // create application/json parser
 const jsonParser = bodyParser.json();
+
 // create application/x-www-form-urlencoded parser
 const urlencodedParser = bodyParser.urlencoded({
   extended: false,
@@ -37,9 +39,14 @@ app.post('/login', urlencodedParser, (req, res) => {
 });
 
 // POST /api/users gets JSON bodies
+
 app.post('/api/users', jsonParser, (req, res) => {
   if (!req.body) return res.sendStatus(400);
   // create user in req.body
 });
+console.log("level 1");
+result.dbManager(logger);
+
+
 
 

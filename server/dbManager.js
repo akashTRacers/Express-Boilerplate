@@ -5,6 +5,7 @@
 const dbManager = (logger) => {
   const log = logger;
 
+  console.log("inside dbmanager function");
   // Connection
   const pe = process.env;
   // use a cloud-hosted mongo db, such as mlab.com
@@ -25,7 +26,7 @@ const dbManager = (logger) => {
         // get db, collection
         db = dbInst;
         // get existing collection, or create if doesn't exist
-        // NOTE: Collections are not created until the first document is inserted
+      
         collection = db.collection('beginnerbook');
       }).catch(err => log.error(err));
 
@@ -43,7 +44,7 @@ const dbManager = (logger) => {
       },
     )
       .then(res => log.debug(`Inserted ${doc.title}`, res));
-        
+
 
   const close = () => db.close()
     .then(() => log.info('DB closed successfully.'));
