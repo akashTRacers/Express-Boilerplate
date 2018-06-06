@@ -1,7 +1,7 @@
 const dbManager=require('./dbManager');
 
 const Promise = require('bluebird');
-
+const mongoose=require("mongoose");
 var path='../index.pug';
 
 // custom logger
@@ -32,11 +32,13 @@ const urlencodedParser = bodyParser.urlencoded({
   extended: false,
 });
 
-let Articles= require('../models/article');
+let articles= require('../models/article');
 
-app.get('/home1',function(req,res){
+dbManager();
 
-    Articles.find({}, function(err, results){
+app.get('/view',function(req,res){
+
+    articles.find({}, function(err, results){
         if(err)
         {
             console.log(err);
@@ -52,9 +54,15 @@ app.get('/home1',function(req,res){
     })
 
   });
-dbManager();
 
+app.get('/insert',function(req,res){
+     let article1 = new articles({title: 'Intro to Mongodb', author: 'shivam', body: 'It is NOSQL database'});
 
+   article1.save((err, result) => {
+       if (err) throw err;
+       console.log("1 records inserted");
+       res.send("<H1>1 records inserted </H1>");
+   });
+  }); 
 
-
-
+ 
