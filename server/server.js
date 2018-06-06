@@ -70,9 +70,42 @@ app.get('/insert',function(req,res){
    res.send("<H1>1 records Deleted </H1>");
   });
 
-  app.put('/update:id',function(req,res){
-    Contact.update({_id: id},{$set: { author: "Adams"}}, contact, {upsert: true}, 
-      function(err){} )
+  app.get('/update/:id',function(req,res){
+      var id=req.params.id;
+      articles.findOne({_id:id}, function(err,foundObject){
+      if(err)
+      {
+        console.log(err);
+        res.status(500).send();
+
+      }
+      else{
+        if(!foundObject)
+        {
+          res.status(400).send();
+        }
+        else{
+          foundObject.author= "Eminson";
+
+        }
+        foundObject.save(function(err,updatedObject){
+            if(err)
+            {
+              console.log(err);
+              res.status(500).send();
+            }
+            else{
+              res.send(updatedObject);
+            }
+
+        });
+      }
+
+
+    })
+    
+    /*Contact.update({_id: id},{$set: { author: "Adams"}}, contact, {upsert: true}, 
+      function(err){} )*/
     res.send("<H1>1 record updated </H1>");
     });
  
