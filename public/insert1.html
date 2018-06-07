@@ -1,0 +1,26 @@
+<html>
+
+<head>
+  <title>Title</title>
+
+  <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.1/spectre.min.css">
+  <style>
+    body {
+     
+      background: #e7e9ed;
+      font-size: 16pt;
+      color: #454d5d;
+      padding-left: 1em;
+    }
+</style>
+</head>
+<body>
+<p>Insert new record</p>
+<form action="/insert" method="POST">
+  
+  <input type="text" placeholder="Title" name="title"> <br>
+  <input type="text" placeholder="Author" name="author"><br>
+  <input type="text" placeholder="Body" name="body"> <br>
+  <button type="submit">Submit</button> 
+</form>
+</body>

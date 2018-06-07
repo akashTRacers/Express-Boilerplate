@@ -2,7 +2,8 @@ const dbManager=require('./dbManager');
 
 const Promise = require('bluebird');
 const mongoose=require("mongoose");
-var path='../index.pug';
+const bodyParser=require('body-parser');
+var path='../views/index.pug';
 
 // custom logger
 const express = require('express');
@@ -20,9 +21,6 @@ app.set("view engine", "pug");
 server.listen(port, () => {
   console.log(`listening to port ${port}`);
 });
-
-// 'body-parser' middleware for POST
-const bodyParser = require('body-parser');
 
 // create application/json parser
 const jsonParser = bodyParser.json();
@@ -55,14 +53,22 @@ app.get('/view',function(req,res){
 
   });
 
-app.get('/insert',function(req,res){
-     let article1 = new articles({title: 'Intro to Mongodb', author: 'shivam', body: 'It is NOSQL database'});
+app.use(bodyParser.urlencoded({extended: true}))
+  
+
+app.post('/insert',function(req,res){
+  console.log(req.body)
+   
+  let article1 = new articles(req.body);
 
    article1.save((err, result) => {
        if (err) throw err;
-       console.log("1 records inserted");
+       console.log("saved to database");
        res.send("<H1>1 records inserted </H1>");
+       //alert("one Rocord inserted");
+       res.redirect('/')
    });
+  
   }); 
 
   app.get('/delete',function(req,res){

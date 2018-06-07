@@ -13,6 +13,14 @@
       color: #454d5d;
       padding-left: 1em;
     }
+    centerframe {
+	    margin-left: 3000px;
+	    border-left: 1px solid gray;
+	    border-right: 1px solid gray;
+	    padding: 1em;
+	    overflow: hidden;
+      align-items: center;
+	}
   </style> 
 </head>
 
@@ -21,7 +29,7 @@
   <!-- navbar header -->
   <header class="navbar">
     <section class="navbar-section">
-      <a href="http://127.0.0.1:8002/home1" class="btn btn-link">Home</a>
+      <a href="/insert1.html" class="btn btn-link">Create</a>
       <a href="#" class="btn btn-link">Docs</a>
       <a href="https://github.com/" class="btn btn-link">GitHub</a>
     </section>
@@ -45,11 +53,19 @@
         <h6 class="card-subtitle">Bringing Technology in Life</h6>
       </div>
       <div class="card-body">
-        Empower every person and every organization on the planet to achieve more.
+        Enter title, author and body for your Favourite Book
       </div>
      
     </div>
-    
+    <br>
+    <p>Insert new record</p>
+    <form action="/insert" method="POST">
+      
+      <input type="text" placeholder="Title" name="title"> <br>
+      <input type="text" placeholder="Author" name="author"><br>
+      <input type="text" placeholder="Body" name="body"> <br>
+      <button type="submit">Submit</button> 
+    </form>
 </body>
 
 </html>
