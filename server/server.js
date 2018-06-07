@@ -34,7 +34,7 @@ let articles= require('../models/article');
 
 dbManager();
 
-app.get('/view',function(req,res){
+app.get('/about',function(req,res){
 
     articles.find({}, function(err, results){
         if(err)

@@ -1,13 +1,17 @@
-style.
- table,td {
-     border: 2px solid black;
-  }
+<!--
+block content
+  h1 #{title}
+  ul
+    each article, i in articles1
+      li
+        p #{article} -->
+
+
 table
   each article in articles1
     tr
       td #{article.title}
       td #{article.author}
       td #{article.body}
-        
 
-    
+      
