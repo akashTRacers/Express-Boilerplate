@@ -45,8 +45,8 @@ app.get('/',function(req,res){
             console.log(results);
             res.render(path,{
               title:'Articles',
-              articles1:results
-      
+              articles1:results,
+              _id: 45      
           });
         } 
     })
