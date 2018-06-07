@@ -1,13 +1,59 @@
-style.
- table,td {
+head
+  title Title
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.1/spectre.min.css')
+  script(src='./myscript.js')
+  style.
+    body {
+    background: #e7e9ed;
+    font-size: 16pt;
+    color: #454d5d;
+    padding-left: 1em;
+    }
+    table,td {
      border: 2px solid black;
-  }
+    }
+    centerframe {
+    margin-left: 3000px;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    padding: 1em;
+    overflow: hidden;
+    align-items: center;
+    }
+// navbar header
+header.navbar
+  section.navbar-section
+    a.btn.btn-link(href='/insert1.html') Create
+    a.btn.btn-link(href='#') Docs
+    a.btn.btn-link(href='https://github.com/') GitHub
+  section.navbar-section
+    .input-group.input-inline
+      input.form-input(type='text' placeholder='search')
+      button.btn.btn-primary.input-group-btn Search
+#app
+  h2 Welcome to page 
+  // card example
+  // using flexbox layout system
+  .card.column.col-4
+    .card-header
+      h4.card-title TechRacers
+      h6.card-subtitle Bringing Technology in Life
+    .card-body
+      | Good friends, good books, and a sleepy conscience: this is the ideal life
+  br  
 table
+  tr
+  th Book Title
+  th Book Author
+  th Description
   each article in articles1
     tr
       td #{article.title}
       td #{article.author}
       td #{article.body}
-        
+      td  
+         button.btn.btn-primary.input-group-btn Update
+      td  
+       button.btn(onclick='UserAction()') Delete
 
     

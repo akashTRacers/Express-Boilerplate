@@ -31,10 +31,10 @@ const urlencodedParser = bodyParser.urlencoded({
 });
 
 let articles= require('../models/article');
-
+path1="../views/table.ejs"
 dbManager();
 
-app.get('/about',function(req,res){
+app.get('/',function(req,res){
 
     articles.find({}, function(err, results){
         if(err)
@@ -71,7 +71,7 @@ app.post('/insert',function(req,res){
   
   }); 
 
-  app.get('/delete',function(req,res){
+  app.delete('/delete',function(req,res){
     articles.find({ author:'shivam' }).remove().exec();
    res.send("<H1>1 records Deleted </H1>");
   });

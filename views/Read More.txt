@@ -8,7 +8,12 @@ block content
 
 
 table
+tr
+  th Title
+  th Author
+  th body
   each article in articles1
+  
     tr
       td #{article.title}
       td #{article.author}
