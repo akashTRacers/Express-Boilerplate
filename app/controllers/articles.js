@@ -16,7 +16,7 @@ class articlesController {
             console.log(err);
         }
         else{
-            console.log(results);
+           // console.log(results);
             res.render(path,{
               title:'Articles',
               articles1:results
@@ -25,6 +25,21 @@ class articlesController {
         } 
     })
     }
+
+    static insertRecord(req,res)
+    {   
+        let articles= require('../models/article');
+        let article1 = new articles(req.body);
+         article1.save((err, result) => {
+             if (err) throw err;
+             console.log("saved to database");
+             res.send("<H1>1 records inserted </H1>");
+             //alert("one Rocord inserted");
+             res.redirect('/')
+         });
+
+    }
+
 }
 
 module.exports =articlesController;

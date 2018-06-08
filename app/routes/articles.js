@@ -17,7 +17,7 @@ const openHome = () => {
 
 const insertArticles=() =>{
     const articlesRouter = express.Router();
-    articlesRouter.get('/', articlesController.insertRecord);
+    articlesRouter.post('/', articlesController.insertRecord);
 
     return articlesRouter;
 
