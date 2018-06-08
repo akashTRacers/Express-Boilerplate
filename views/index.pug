@@ -11,6 +11,13 @@ head
     table,td {
      border: 2px solid black;
     }
+    a.button {
+   -webkit-appearance: button;
+   -moz-appearance: button;
+   appearance: button;
+   text-decoration: none;
+   color: initial;
+   }
     centerframe {
     margin-left: 3000px;
     border-left: 1px solid gray;
@@ -23,7 +30,7 @@ head
 header.navbar
   section.navbar-section
     a.btn.btn-link(href='/insert1.html') Create
-    a.btn.btn-link(href='#') Docs
+    a.btn.btn-link(href='/article') Docs
     a.btn.btn-link(href='https://github.com/') GitHub
   section.navbar-section
     .input-group.input-inline
@@ -40,20 +47,25 @@ header.navbar
     .card-body
       | Good friends, good books, and a sleepy conscience: this is the ideal life
   br  
-  script(src='http://localhost:8002/myscript.js')
+  //script(src='http://localhost:8002/{myscript.js}')
 table
   tr
   th Book Title
   th Book Author
   th Description
+  th Book Id
   each article in articles1
     tr
       td #{article.title}
       td #{article.author}
       td #{article.body}
+      td #{article._id}
       td  
          button.btn.btn-primary.input-group-btn Update
       td  
-         button.btn(onclick="UserAction(" + id+ ");") Delete
+         form(action="/delete/:5b167730b30bf23ac6b0164c", method='delete', id="form1")
+         button(type='submit', form="form1") Delete
+      
+
 
     
