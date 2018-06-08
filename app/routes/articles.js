@@ -23,5 +23,13 @@ const insertArticles=() =>{
 
 }
 
+const deleteArticles=() =>{
+    const articlesRouter = express.Router();
+    articlesRouter.delete('/', articlesController.deleteRecord);
+
+    return articlesRouter;
+
+}
+
 module.exports = {initArticles
-                 ,openHome,insertArticles};
+                 ,openHome,insertArticles,deleteArticles};

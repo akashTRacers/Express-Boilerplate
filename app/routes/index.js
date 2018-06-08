@@ -6,6 +6,7 @@ const initRoutes = (app) => {
     app.use('/articles', initArticles1.initArticles());
     app.use(bodyParser.urlencoded({extended: true}))
     app.use('/insert',initArticles1.insertArticles());
+    app.use('/delete/:id',initArticles1.deleteArticles());
 }
 
 module.exports = initRoutes;

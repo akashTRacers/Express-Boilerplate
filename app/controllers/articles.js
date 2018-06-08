@@ -40,6 +40,14 @@ class articlesController {
 
     }
 
+    static deleteRecord(req,res)
+    {
+        let articles= require('../models/article');
+        console.log("deletion started");
+        articles.find({ _id:id }).remove().exec();
+       res.send("<H1>1 records Deleted </H1>");
+      }
+
 }
 
 module.exports =articlesController;
