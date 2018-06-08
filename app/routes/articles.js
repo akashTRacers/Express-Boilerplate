@@ -4,32 +4,11 @@ const articlesController = require("../controllers/articles");
 const initArticles = () => {
     const articlesRouter = express.Router();
     articlesRouter.get('/', articlesController.getArticles);
-
-    return articlesRouter;
+    articlesRouter.post('/', articlesController.insertArticles);
+    articlesRouter.delete('/:id', articlesController.deleteArticles);
+   return articlesRouter;
 }
 
-const openHome = () => {
-    const articlesRouter = express.Router();
-    articlesRouter.get('/', articlesController.getHome);
 
-    return articlesRouter;
-}
-
-const insertArticles=() =>{
-    const articlesRouter = express.Router();
-    articlesRouter.post('/', articlesController.insertRecord);
-
-    return articlesRouter;
-
-}
-
-const deleteArticles=() =>{
-    const articlesRouter = express.Router();
-    articlesRouter.delete('/', articlesController.deleteRecord);
-
-    return articlesRouter;
-
-}
-
-module.exports = {initArticles
-                 ,openHome,insertArticles,deleteArticles};
+module.exports = initArticles;
+              

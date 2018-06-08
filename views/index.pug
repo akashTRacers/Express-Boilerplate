@@ -63,8 +63,10 @@ table
       td  
          button.btn.btn-primary.input-group-btn Update
       td  
-         form(action="/delete/:5b167730b30bf23ac6b0164c", method='delete', id="form1")
-         button(type='submit', form="form1") Delete
+        form(action="http://localhost:8002/delete/"+article._id, method='POST', id="form1")
+        input(type='text', name='_method', value='DELETE', hidden='')
+        button(type='submit',onclick="myFunction()",form="form1") Delete
+        confirm("Press a button!")
       
 
 

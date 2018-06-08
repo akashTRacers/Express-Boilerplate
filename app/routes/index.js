@@ -1,12 +1,15 @@
 // const app = require("express")();
-const initArticles1 = require("./articles");
-const bodyParser=require('body-parser');
+const initArticles = require("./articles");
+const openHome= require("./openHome.js");
+
 const initRoutes = (app) => {
-    app.use('/',initArticles1.openHome());
-    app.use('/articles', initArticles1.initArticles());
-    app.use(bodyParser.urlencoded({extended: true}))
-    app.use('/insert',initArticles1.insertArticles());
-    app.use('/delete/:id',initArticles1.deleteArticles());
+    console.log("inside index.js");
+    app.use('/articles', initArticles()); 
+    app.use('/insert', initArticles()); 
+    app.use('/delete',initArticles());
+    app.use('/', openHome());
+   
 }
 
 module.exports = initRoutes;
+
